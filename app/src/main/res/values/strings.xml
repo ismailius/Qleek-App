@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Qleek.me</string>
+    <string name="ap_server">WebServerActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Let\'s go</string>
+    <string name="hello_small">Hi</string>
+</resources>

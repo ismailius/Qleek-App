@@ -1,0 +1,24 @@
+<div class="container full-width" ng-controller="homeCtrl">
+	<div class="row top-buffer-lg">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10" >
+			<form ng-hide="!secure" name="loginForm" class="col-lg-offset-3 col-md-offset-3 col-sm-offset-1 col-xs-offset-1 col-lg-6 col-md-6 col-sm-10 col-xs-10 text-center top-buffer-lg" ng-submit="loginForm.$valid && connect(selected.ssid, password)" novalidate>
+				<img src="img/setup/wifi.png" class="bottom-buffer-md top-buffer-sm">
+				<h2 g-bind="selected"> </h2>
+				<p class="bottom-buffer-md">Please enter the password to your home Wifi Network to connect your Qleek player.</p>
+				<input class="simpleform" ng-minlength="min_length" ng-model="password" name="password" type="password" placeholder="Password" required>
+				<span class="error" ng-show="submitted && loginForm.password.$error.required">Required</span>
+				<span class="error" ng-show="submitted && loginForm.password.$error.minlength">Passphrase must be at least {{ min_length }} caracters</span>
+				<p class="error bottom-buffer-md" ng-bind="errorMessage"> Sorry, we're experiencing technical issue. Try again later.</p>
+				<button type="submit" id="submit" value="Submit" ng-click="submitted=true" > Connect </button>
+			</form>
+
+			<form ng-hide="secure" name="loginForm2" class="col-lg-offset-3 col-md-offset-3 col-sm-offset-1 col-xs-offset-1 col-lg-6 col-md-6 col-sm-10 col-xs-10 text-center top-buffer-lg" ng-submit="loginForm2.$valid && connectOpen(selected.ssid)" novalidate>
+				<img src="img/setup/wifi.png" class="bottom-buffer-md top-buffer-sm">
+				<h2 g-bind="selected"> </h2>
+				<p class="bottom-buffer-md highlight">This is an open network, click on Connect to use it for your Qleek player</p>
+				<p class="error bottom-buffer-md" ng-bind="errorMessage"> Sorry, we're experiencing technical issue. Try again later.</p>
+				<button type="submit" id="submit" value="Submit" ng-click="submitted=true" > Connect </button>
+			</form>
+		</div>
+	</div>
+</div>

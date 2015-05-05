@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Q L E E K  -  Setup </title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> 
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet"  href="bower_components/ngDialog/css/ngDialog.css"/>
+</head>
+<body ng-controller="homeCtrl">
+  <div class="header-wrapper">
+    <header class="nav-header">
+      <div class="nav-wrapper hidden-xs">
+        <a href="/" id="top">
+          <img class="nav-logo" src="img/logo.png"> 
+        </a>
+        <div class="text-nav">
+          <nav>
+           <ul class="ul">
+             <li class="nav">Need assistance?</li>
+           </ul>
+         </nav>
+       </div>
+     </div>
+     <div class="full-width visible-xs text-center">
+      <a href="/" id="top" class="col-xs-12 top-buffer-md">
+        <img class=" " src="img/logo.png"> 
+      </a>
+      <div class="text-nav">
+          <nav>
+           <ul class="ul pull-right">
+             <li class="nav"></li>
+           </ul>
+         </nav>
+       </div>
+    </div>
+  </header>
+</div>
+<!-- <div class="container"> -->
+  <div class="row">
+    <div ng-hide="step" class="full-width-section col-lg-12 col-md-12 col-sm-12 col-xs-12 " >
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+        <h2 class="col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">CONNECTING QLEEK</h2>
+        <p class="highlight bottom-buffer-md col-xs-offset-1 col-xs-10">Click on your Home Wifi Network to connect Qleek to the Internet.</p>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom-buffer-lg " >
+          <div class=" col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8" ng-cloak>
+            <div class="list-group">
+              <a href="" class="list-group-item" ng-repeat="wifi in wifis track by $index" ng-click="openDialog(wifi)">
+                <h4 class="" ng-bind="wifi.ssid" ></h4>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row " ng-hide="!step" ng-cloak>
+    <div class="full-width-section col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" >
+      <h2 class="col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">ALMOST THERE</h2>
+      <p class="highlight bottom-buffer-md col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8">We have just sent your WiFi configuration to the Qleek Player. How is the hexagonal light of the player?</p>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+        <button class="white" ng-click="blink(true)" > Not Blinking </button><button class="white" ng-click="blink(false)" > Blinking </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row white " ng-hide="!step" ng-cloak>
+    <div class="full-width text-center ">
+      <div ng-show="message" class="top-buffer-md bottom-buffer-lg col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8" ng-cloak>
+        <h1 ng-show="ok" class=" glyphicon  glyphicon-ok-sign" ></h1>
+        <p class="highlight " ng-show="ok">Then you are all set. Play one of your Qleeks, sit back and enjoy !</p>
+        <h1 ng-show="nok" class="  glyphicon glyphicon-minus-sign" ></h1>
+        <p class="highlight " ng-show="nok">Something wrong happened. Please reconnect to <b>Qleek_Setup</b> and click <a href="" ng-click="reloadPage()">here</a> to start over. <br> Sorry about that!</p>
+      </div>
+    </div>
+  </div>
+<!-- </div> -->
+
+
+
+
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="app.js"></script>
+<script src="controllers.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bower_components/ngDialog/js/ngDialog.js"></script>
+</body>
+</html>
