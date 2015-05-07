@@ -4,9 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -42,22 +41,18 @@ public class MainActivity extends Activity {
 
             SharedPreferences settings = getSharedPreferences(Constants.DEVICE_STATE, 0);
             boolean setup = settings.getBoolean("setupMode", true);
-
-
-            Log.i("START", "TOOT");
+            boolean player = settings.getBoolean("playerMode", false);
 
             if(setup) {
                 startServer();
             }
             else {
-                try {
-                    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-                    Ringtone r = RingtoneManager.getRingtone(context, notification);
-                    r.play();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
                 // TODO Check connectivity
+                while (!player) {
+                    Log.i("MAINACTIVITY", "Waiting for player");
+                    if (isNetworkAvailable(context))
+                        player = true;
+                }
                 startPlayer();
             }
         }
@@ -118,4 +113,10 @@ public class MainActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 
+    private boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 }

@@ -72,10 +72,13 @@
   <div class="row white " ng-hide="!step" ng-cloak>
     <div class="full-width text-center ">
       <div ng-show="message" class="top-buffer-md bottom-buffer-lg col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8" ng-cloak>
-        <h1 ng-show="ok" class=" glyphicon  glyphicon-ok-sign" ></h1>
-        <p class="highlight " ng-show="ok">Then you are all set. Play one of your Qleeks, sit back and enjoy !</p>
-        <h1 ng-show="nok" class="  glyphicon glyphicon-minus-sign" ></h1>
-        <p class="highlight " ng-show="nok">Something wrong happened. Please reconnect to <b>Qleek_Setup</b> and click <a href="" ng-click="reloadPage()">here</a> to start over. <br> Sorry about that!</p>
+        <h2 ng-show="ok">CONGRATULATIONS</h2>
+        <p class="highlight bottom-buffer-md" ng-show="ok">Then you are all set. Play one of your Qleeks, sit back and enjoy !</p>
+         <a ng-show="ok" href="http://www.qleek.me"><button class="" > Browse Qleeks </button></a>
+        <h2 ng-show="nok">OOPS!</h2>
+        <p class="highlight bottom-buffer-md" ng-show="nok">Something wrong happened. Please reconnect to Qleek_Setup and click on the button below to start over. Sorry about that!</p>
+        <a ng-show="nok" href="" ng-click="reloadPage()"><button class="" > Start Over </button></a>
+        <a ng-show="nok" href="http://www.qleek.me/contact"><button class="" > Contact us </button></a>
       </div>
     </div>
   </div>
