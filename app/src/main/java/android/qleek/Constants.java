@@ -5,9 +5,10 @@ package android.qleek;
  */
 public class Constants {
     // The state of the device -1 = not setup
-    public static final String QLEEK_BACKEND_API = "http://qleek.herokuapp.com/routes";
-
-    public static final String DEVICE_STATE = " com.mikhaellopez.webserver.DEVICE_STATE";
+    public static final String QLEEK_SPOTIFY_TOKEN_URL = "http://192.168.128.115:3000/api/v1/player/554bbbf5b4d0995b107d14f1/setting/spotify_token";
+    public static final String SPOTIFY_TOKEN = "android.qleek.SPOTIFY_TOKEN";
+    public static final String SPOTIFY_CLIENT_ID = "a25c3469a92648eab6ff4d41c4658562";
+    public static final String DEVICE_STATE = " android.qleek.DEVICE_STATE";
 
     public static final String DEVICE_STATE_SETUP = "android.qleek.setup";
     public static final String DEVICE_STATE_PLAYER = "android.qleek.player";
@@ -28,4 +29,5 @@ public class Constants {
     public static final String QLEEK_SETUP_INCORRECT_PASSWORD = "The password seems incorrect.\n Please reconnect and try again.";
 
     public static final String PLAYER_SETTINGS = "android.qleek.PLAYER_SETTINGS";
+
 }
