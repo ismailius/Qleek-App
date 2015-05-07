@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.qleek.MainActivityr.R;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
     public Context context;
@@ -37,26 +38,48 @@ public class MainActivity extends Activity {
 
     public Runnable qleekSetup = new Runnable() {
         public void run() {
-            resetAppSettings();
+
+//            resetAppSettings();
 
             SharedPreferences settings = getSharedPreferences(Constants.DEVICE_STATE, 0);
-            boolean setup = settings.getBoolean("setupMode", true);
-            boolean player = settings.getBoolean("playerMode", false);
+            boolean setup = settings.getBoolean(Constants.DEVICE_STATE_SETUP, true);
+            boolean player = settings.getBoolean(Constants.DEVICE_STATE_PLAYER, false);
+            boolean disconnected = settings.getBoolean(Constants.DEVICE_STATE_DISCONNECTED, false);
 
             if(setup) {
+                // TODO Force Setup Mode
+                // SETUP_STATE
+                Log.d("QLEEK", "Entering SETUP_STATE");
                 startServer();
             }
             else {
-                // TODO Check connectivity
-                while (!player) {
-                    Log.i("MAINACTIVITY", "Waiting for player");
-                    if (isNetworkAvailable(context))
-                        player = true;
+                if (disconnected) {
+                    // No more connectivity : DISCONNECTED_STATE
+                    handleDisconnection();
                 }
-                startPlayer();
+                else {
+                    if (isNetworkAvailable(context)) {
+                        // Entering PLAYER_STATE
+                        Log.d("QLEEK", "Entering PLAYER_STATE");
+                        startPlayer();
+                    }
+                    else {
+                        handleDisconnection();
+                    }
+                }
             }
         }
     };
+
+    public void handleDisconnection () {
+        SharedPreferences settings = getSharedPreferences(Constants.DEVICE_STATE, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(Constants.DEVICE_STATE_DISCONNECTED, true);
+        editor.putBoolean(Constants.DEVICE_STATE_PLAYER, false);
+
+        TextView txtv  = (TextView)findViewById(R.id.textView);
+        txtv.setText("Internet Connection Lost");
+    }
 
     public void startServer() {
         Intent intent = new Intent(this, ApWebServerActivity.class);
@@ -71,12 +94,14 @@ public class MainActivity extends Activity {
     public void resetAppSettings() {
         SharedPreferences settings = getSharedPreferences(Constants.DEVICE_STATE, 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putBoolean("setupMode", true);
+        editor.putBoolean(Constants.DEVICE_STATE_SETUP, true);
         editor.commit();
     }
 
     @Override
     protected void onResume() {
+
+        Log.i("MAINACTIVITY", "Resumed !!");
         super.onResume();
     }
 

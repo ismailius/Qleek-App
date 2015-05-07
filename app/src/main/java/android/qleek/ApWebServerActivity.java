@@ -33,7 +33,6 @@
 
     import static android.qleek.MainActivity.hideSystemUI;
 
-
     /**
      * Created by ismailsalhi on 4/23/15.
      */
@@ -329,16 +328,16 @@
                 if(networkInfo.getDetailedState().toString().equals("CONNECTED")) {
                     SharedPreferences settings = this.getSharedPreferences(Constants.DEVICE_STATE, 0);
                     SharedPreferences.Editor editor = settings.edit();
-                    editor.putBoolean("setupMode", false);
+                    editor.putBoolean(Constants.DEVICE_STATE_SETUP, false);
                     editor.commit();
-                    Intent i = new Intent(this, PlayerActivity.class);
-                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    this.startActivity(i);
+//                    Intent i = new Intent(this, PlayerActivity.class);
+//                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    this.startActivity(i);
                 }
                 if(networkInfo.getDetailedState().toString().contains("DISCONNECTED")) {
                     SharedPreferences settings = this.getSharedPreferences(Constants.DEVICE_STATE, 0);
                     SharedPreferences.Editor editor = settings.edit();
-                    editor.putBoolean("setupMode", true);
+                    editor.putBoolean(Constants.DEVICE_STATE_SETUP, true);
                     editor.commit();
                 }
             }

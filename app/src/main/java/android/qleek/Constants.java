@@ -5,7 +5,14 @@ package android.qleek;
  */
 public class Constants {
     // The state of the device -1 = not setup
+    public static final String QLEEK_BACKEND_API = "http://qleek.herokuapp.com/routes";
+
     public static final String DEVICE_STATE = " com.mikhaellopez.webserver.DEVICE_STATE";
+
+    public static final String DEVICE_STATE_SETUP = "android.qleek.setup";
+    public static final String DEVICE_STATE_PLAYER = "android.qleek.player";
+    public static final String DEVICE_STATE_DISCONNECTED = "android.qleek.disconnected";
+
     public static final Object BACKSLASH = "\"";
     public static final String NETWROK_ADDITIONAL_SECURITY_TKIP = "TKIP";
     public static final String NETWROK_ADDITIONAL_SECURITY_AES = "AES";
@@ -20,4 +27,5 @@ public class Constants {
     public static final String QLEEK_SETUP_ACCESS_POINT_PROBLEM = "It looks like we are having an Access Point problem. Please reboot your player.\n If the problem persists please contact us at Qleek.me/contact";
     public static final String QLEEK_SETUP_INCORRECT_PASSWORD = "The password seems incorrect.\n Please reconnect and try again.";
 
+    public static final String PLAYER_SETTINGS = "android.qleek.PLAYER_SETTINGS";
 }
