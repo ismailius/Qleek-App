@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.qleek.MainActivityr.R;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.spotify.sdk.android.player.Config;
@@ -59,6 +57,8 @@ public class PlayerActivity extends Activity implements
             @Override
             public void onResponse(JSONObject response) {
                 try {
+
+                    // TODO Change from Preferences to Content Provider
                     SharedPreferences settings = PlayerActivity.this.getSharedPreferences(Constants.PLAYER_SETTINGS, 0);
                     SharedPreferences.Editor editor = settings.edit();
                     editor.putString(Constants.SPOTIFY_TOKEN, response.getString("spotify_token"));
@@ -81,17 +81,15 @@ public class PlayerActivity extends Activity implements
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(),
-                            "Error: " + e.getMessage(),
-                            Toast.LENGTH_LONG).show();
+                    // TODO Absent Token - Blink the Player and Display Something
+                    Log.e("SPOTIFY_TOKEN", "Absent Token, please connect your spotify account");
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.d("SPOTIFY_TOKEN_REQUEST", " Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
+                // TODO Absent Token - Blink the Player and Display Something
+                Log.e("SPOTIFY_TOKEN", "Absent Token, please connect your spotify account");
             }
         });
         mRequestQueue.add(jsonObjReq);

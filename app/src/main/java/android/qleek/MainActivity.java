@@ -79,6 +79,13 @@ public class MainActivity extends Activity {
 
         TextView txtv  = (TextView)findViewById(R.id.textView);
         txtv.setText("Internet Connection Lost");
+
+        while (!isNetworkAvailable(this)) {
+
+        }
+
+        Intent intent = new Intent(this, PlayerActivity.class);
+        startActivity(intent);
     }
 
     public void startServer() {
