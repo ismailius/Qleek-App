@@ -5,7 +5,7 @@ package android.qleek;
  */
 public class Constants {
     // The state of the device -1 = not setup
-    public static final String QLEEK_SPOTIFY_TOKEN_URL = "https://qleek.herokuapp.com/api/v1/player/554bf6cb83a143d339c55b06/setting/spotify_token";
+    public static final String QLEEK_SPOTIFY_TOKEN_URL = "http://qleek-backend-staging.herokuapp.com/api/v1/player/554d5c724569bff3e425fff6/setting/spotify_token";
     public static final String SPOTIFY_TOKEN = "android.qleek.SPOTIFY_TOKEN";
     public static final String SPOTIFY_CLIENT_ID = "a25c3469a92648eab6ff4d41c4658562";
     public static final String DEVICE_STATE = " android.qleek.DEVICE_STATE";
